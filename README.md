@@ -1,58 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Application Deployment on AWS EC2
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Overview
 
-## About Laravel
+This project demonstrates the deployment of a Laravel application on an AWS EC2 Ubuntu server using Apache, PHP, MySQL, Git, and GitHub.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The project was deployed manually to gain practical experience in cloud engineering, Linux server administration, and Laravel production deployment.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
+- Laravel
+- PHP
+- Apache2
+- MySQL
+- Ubuntu Server
+- AWS EC2
+- Git & GitHub
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Deployment Process
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 1. Launch AWS EC2 Instance
 
-## Agentic Development
+An Ubuntu EC2 instance was launched from the AWS Management Console.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+![EC2 Instance](screenshots/EC2-instance.png)
+
+---
+
+### 2. Connect to the Server Using SSH
+
+The server was accessed securely using SSH and a PEM key pair.
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+ssh -i your-key.pem ubuntu@your-public-ip
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+![SSH Connection](screenshots/ssh-status.png)
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Install Apache, PHP, and MySQL
 
-## Code of Conduct
+Required packages and dependencies were installed on the Ubuntu server.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+sudo apt update
+sudo apt install apache2 php mysql-server
+```
 
-## Security Vulnerabilities
+![Package Installation](screenshots/Apache-installation.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+### 4. Clone Laravel Project from GitHub
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel repository was cloned into the server.
+
+```bash
+git clone https://github.com/yourusername/project-name.git
+```
+
+---
+
+### 5. Configure Env File
+
+The `.env` file was configured with database credentials and application settings.
+
+---
+
+### 6. Run Database Migration
+
+Database tables were created using Laravel migration commands.
+
+```bash
+php artisan migrate
+```
+---
+
+### 7. Configure Apache Virtual Host
+
+Apache virtual host configuration was updated to point to Laravel's `public` directory.
+
+---
+
+### 8. Final Application Output
+
+The Laravel application was successfully deployed and accessed through the browser.
+
+![Final Output](screenshots/final-output.png)
+
+---
+
+## Author
+
+Developed and deployed by [Feyiwaves]
